@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>YATA - Yet another twitter app</title>
+    <link rel="stylesheet" type="text/css" href="../static/style.css">
+</head>
+<body>
+<div id="banner">
+    <h1>Twitter</h1>
+    <a href="/"><img src="../static/bird.png"></a>
+</div>
+<div id="status">
+    <h1>Write a new status</h1>
+    <form action="/", method="post">
+        <textarea name="text">Write your tweet here!</textarea>
+        <button onclick="">Tweet!</button>
+    </form>
+    {% if posted %}
+        <p> Your tweet was posted!</p>
+    {% endif %}
+</div>
+<div id="timeline">
+    {% if tweets != None %}
+    <ul>
+        {% for tweet in tweets %}
+            <li>
+                <div id="tweet">
+                    <div id="tweet-header"><a href="/me">@{{ tweet.uname }}</a></div> <br>
+                    <div id="tweet-content"><img id="img" src="{{tweet.image}}">{{ tweet.text }}</div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+    <br>
+    <br>
+    {% else %}
+    <p> There are no tweets :(</p>
+    {% endif %}
+</div>
+</body>
+</html>
